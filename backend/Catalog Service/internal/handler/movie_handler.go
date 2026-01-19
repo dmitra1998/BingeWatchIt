@@ -23,5 +23,4 @@ func (h *MovieHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(movies)
-	// fmt.Println("Fetched movies:", movies)
 }

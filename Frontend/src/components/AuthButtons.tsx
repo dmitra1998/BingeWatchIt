@@ -4,7 +4,7 @@ import Link from "next/link"
 const AuthButtons = () => {
   return (
     <div>
-      <Link href="/SignIn">
+      <Link href="/Home/SignIn">
         <button className="font-bold py-2 px-4 rounded hover:cursor-pointer">
           Sign In/Sign Up
         </button>

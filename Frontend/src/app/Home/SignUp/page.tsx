@@ -9,6 +9,8 @@ const SignUp = () => {
   const [state, formAction, isPending] = useActionState(submitSignUpForm, undefined);
 
   const signUpFields = [
+        {id: 'firstName', name: 'firstName', placeholder: 'First Name', type: 'text', label: 'First Name'},
+        {id: 'lastName', name: 'lastName', placeholder: 'Last Name', type: 'text', label: 'Last Name'},
         {id: 'username', name: 'username', placeholder: 'User Name', type: 'text', label: 'Username'},
         {id: 'email', name: 'email', placeholder: 'E-Mail', type: 'text', label: 'Email'},
         {id: 'password', name: 'password', placeholder: 'Password', type: 'password', label: 'Password'},

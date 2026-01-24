@@ -1,8 +1,10 @@
 "use server";
 
 const submitSignUpForm = async (previousState: unknown, formData: FormData) => {
-    const email = formData.get('email');
+    const firstName = formData.get('firstName');
+    const lastName = formData.get('lastName');
     const username = formData.get('username');
+    const email = formData.get('email');
     const password = formData.get('password');
     const confirmPassword = formData.get('confirmPassword');
 
@@ -15,7 +17,7 @@ const submitSignUpForm = async (previousState: unknown, formData: FormData) => {
         headers: {
         "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, username, password, confirmPassword }),
+        body: JSON.stringify({ firstName, lastName, username, email, password, confirmPassword }),
         cache: "no-store",
     });
 

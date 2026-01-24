@@ -1,7 +1,7 @@
 package main
 
 import (
-	handler "auth-service/internal/handlers"
+	"auth-service/internal/auth"
 	"log"
 	"net/http"
 	"os"
@@ -23,8 +23,8 @@ func main() {
 		port = "8081"
 	}
 	mux := http.NewServeMux()
-	mux.HandleFunc("/api/signup", handler.SignUp)
-	mux.HandleFunc("/api/signin", handler.SignIn)
+	mux.HandleFunc("/api/signup", auth.SignUp)
+	mux.HandleFunc("/api/signin", auth.SignIn)
 
 	log.Println("Server running on port", port)
 	log.Fatal(http.ListenAndServe(":"+port, mux))

@@ -1,4 +1,4 @@
-package signupHandler
+package auth
 
 import (
 	"encoding/json"

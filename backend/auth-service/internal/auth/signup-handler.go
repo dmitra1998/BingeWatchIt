@@ -50,8 +50,10 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 
 	//Basic validation of required fields
 	req.Username = strings.TrimSpace(req.Username)
+	req.FirstName = strings.TrimSpace(req.FirstName)
+	req.LastName = strings.TrimSpace(req.LastName)
 	req.Email = strings.TrimSpace(strings.ToLower(req.Email))
-	if req.Username == "" || req.Email == "" || req.Password == "" || req.ConfirmPassword == "" {
+	if req.FirstName == "" || req.LastName == "" || req.Username == "" || req.Email == "" || req.Password == "" || req.ConfirmPassword == "" {
 		http.Error(w, "missing required fields", http.StatusBadRequest)
 		return
 	}

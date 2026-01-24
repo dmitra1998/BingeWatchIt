@@ -7,20 +7,12 @@ import (
 	"strings"
 )
 
-type SignUpRequest struct {
-	FirstName       string `json:"firstName"`
-	LastName        string `json:"lastName"`
-	Username        string `json:"username"`
-	Email           string `json:"email"`
-	Password        string `json:"password"`
-	ConfirmPassword string `json:"confirmPassword"`
+type SignInRequest struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
-type APIResponse struct {
-	Message string `json:"message"`
-}
-
-func SignUp(w http.ResponseWriter, r *http.Request) {
+func SignIn(w http.ResponseWriter, r *http.Request) {
 
 	//Checking how the endpoint was called. It allows only POST method
 	if r.Method != http.MethodPost {
@@ -36,7 +28,7 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 	log.Println("HIT /api/signup")
 
 	//Prepare a struct to receive data. Allocates memory for the signup payload. This struct mirrors frontend JSON keys.
-	var req SignUpRequest
+	var req SignInRequest
 
 	//JSON decoder with DisallowUnknownFields to avoid extra unexpected fields
 	dec := json.NewDecoder(r.Body)
@@ -49,14 +41,13 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//Basic validation of required fields
-	req.Username = strings.TrimSpace(req.Username)
 	req.Email = strings.TrimSpace(strings.ToLower(req.Email))
-	if req.Username == "" || req.Email == "" || req.Password == "" || req.ConfirmPassword == "" {
+	if req.Email == "" || req.Password == "" {
 		http.Error(w, "missing required fields", http.StatusBadRequest)
 		return
 	}
 
-	log.Printf("Signup request: %+v\n", req)
+	log.Printf("Signin request: %+v\n", req)
 
 	//Preparing JSON response headers
 	w.Header().Set("Content-Type", "application/json")
